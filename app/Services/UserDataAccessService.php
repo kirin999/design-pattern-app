@@ -14,9 +14,23 @@ class UserDataAccessService
         $this->User = $UserDataAccess;
     }
 
-    public function getUserData()
+    public function getUserDataTime()
     {
+        $start = microtime(true);
+        $memory = memory_get_usage();
+
+        //データ取得
         $data = $this->User->getAll();
-        return $data;
+
+        $result = [
+            // どちらのリポジトリを使用しているかわかるように
+            'name'      => get_class($this->User),
+            // 実行時間
+            'time'      => microtime(true) - $start,
+            // 使用メモリ
+            'memory'    => (memory_get_peak_usage() - $memory) / (1024 * 1024)
+        ];
+
+        return $result;
     }
 }
