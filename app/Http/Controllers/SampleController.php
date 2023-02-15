@@ -20,4 +20,6 @@ class SampleController extends Controller
         // 結果出力
         var_dump($result);
     }
+
+    // これはgit flowの練習
 }
